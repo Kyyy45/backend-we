@@ -12,7 +12,7 @@
  *     summary: Dashboard khusus teacher
  *     tags: [Teacher]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Data dashboard teacher

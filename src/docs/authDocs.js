@@ -38,31 +38,6 @@
 
 /**
  * @swagger
- * /auth/login:
- *   post:
- *     summary: Login user
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - email
- *               - password
- *             example:
- *               email: "number777@yopmail.com"
- *               password: "One1234!"
- *     responses:
- *       200:
- *         description: Login berhasil, token disimpan di cookie.
- *       400:
- *         description: Email atau password salah.
- */
-
-/**
- * @swagger
  * /auth/resend-activation:
  *   post:
  *     summary: Kirim ulang email aktivasi akun
@@ -99,14 +74,39 @@
  *           schema:
  *             type: object
  *             required:
- *               - token
+ *               - code
  *             example:
- *               token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+ *               code: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
  *     responses:
  *       200:
  *         description: Akun berhasil diaktifkan.
  *       400:
  *         description: Token tidak valid atau kadaluarsa.
+ */
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - emailorUsername
+ *               - password
+ *             example:
+ *               emailOrUsername: "number777@yopmail.com"
+ *               password: "One1234!"
+ *     responses:
+ *       200:
+ *         description: Login berhasil, token disimpan di cookie.
+ *       400:
+ *         description: Email atau password salah.
  */
 
 /**

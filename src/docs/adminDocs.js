@@ -12,7 +12,7 @@
  *     summary: Get all users
  *     tags: [Admin]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Berhasil mengambil seluruh user

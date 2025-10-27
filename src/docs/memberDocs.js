@@ -12,7 +12,7 @@
  *     summary: Dashboard khusus member
  *     tags: [Member]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Data dashboard member
