@@ -1,5 +1,9 @@
 import jwt from "jsonwebtoken";
 
+/**
+ * verifyToken(roles = [])
+ * - roles: array of allowed roles, empty array means any authenticated user
+ */
 export const verifyToken = (roles = []) => {
   return (req, res, next) => {
     try {
@@ -19,7 +23,9 @@ export const verifyToken = (roles = []) => {
       req.user = decoded;
       next();
     } catch (error) {
-      return res.status(401).json({ errors: ["Token tidak valid atau kadaluarsa"] });
+      return res
+        .status(401)
+        .json({ errors: ["Token tidak valid atau kadaluarsa"] });
     }
   };
 };
