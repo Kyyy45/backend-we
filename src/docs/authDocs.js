@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /api/auth/register:
+ * /auth/register:
  *   post:
  *     summary: Registrasi user baru
  *     tags: [Auth]
@@ -38,7 +38,7 @@
 
 /**
  * @swagger
- * /api/auth/login:
+ * /auth/login:
  *   post:
  *     summary: Login user
  *     tags: [Auth]
@@ -63,7 +63,7 @@
 
 /**
  * @swagger
- * /api/auth/resend-activation:
+ * /auth/resend-activation:
  *   post:
  *     summary: Kirim ulang email aktivasi akun
  *     tags: [Auth]
@@ -88,7 +88,7 @@
 
 /**
  * @swagger
- * /api/auth/activation:
+ * /auth/activation:
  *   post:
  *     summary: Aktivasi akun dengan token dari email
  *     tags: [Auth]
@@ -111,7 +111,7 @@
 
 /**
  * @swagger
- * /api/auth/refresh-token:
+ * /auth/refresh-token:
  *   post:
  *     summary: Generate token baru dari refresh token (via cookie)
  *     tags: [Auth]
@@ -124,7 +124,7 @@
 
 /**
  * @swagger
- * /api/auth/logout:
+ * /auth/logout:
  *   post:
  *     summary: Logout user (hapus cookie token)
  *     tags: [Auth]
@@ -135,7 +135,7 @@
 
 /**
  * @swagger
- * /api/auth/forgot-password:
+ * /auth/forgot-password:
  *   post:
  *     summary: Minta reset password melalui email
  *     tags: [Auth]
@@ -158,7 +158,7 @@
 
 /**
  * @swagger
- * /api/auth/reset-password:
+ * /auth/reset-password:
  *   post:
  *     summary: Reset password menggunakan token dari email
  *     tags: [Auth]

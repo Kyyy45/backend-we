@@ -109,7 +109,7 @@ export const activateAccount = async (req, res) => {
       return res
         .status(400)
         .json({ errors: ["Token aktivasi tidak ditemukan"] });
-
+        
     // Token verification
     const decoded = jwt.verify(code, process.env.ACTIVATION_TOKEN_SECRET);
 

@@ -1,15 +1,20 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { swaggerSpec, swaggerUiServe, swaggerUiSetup } from "./src/config/swagger.js";
+import {
+  swaggerSpec,
+  swaggerUiMiddleware,
+} from "./src/config/swagger.js";
 import authRoutes from "./src/routes/authRoutes.js";
-import protectedRoutes from "./src/routes/protectedRoutes.js";
+import adminRoutes from "./src/routes/adminRoutes.js";
+import memberRoutes from "./src/routes/memberRoutes.js";
+import teacherRoutes from "./src/routes/teacherRoutes.js";
 
 const app = express();
 app.use(express.json());
 
 // Swagger Docs
-app.use("/api-docs", swaggerUiServe, swaggerUiSetup(swaggerSpec));
+app.use("/api-docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
 
 app.use(
   cors({
@@ -22,7 +27,10 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/protected", protectedRoutes);
+
+app.use("/api/admin", adminRoutes);
+app.use("/api/member", memberRoutes);
+app.use("/api/teacher", teacherRoutes);
 
 // Basic root route
 app.get("/", (req, res) => res.json({ message: "API is running" }));
