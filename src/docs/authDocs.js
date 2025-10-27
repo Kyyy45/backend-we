@@ -148,10 +148,10 @@
  *             required:
  *               - email
  *             example:
- *               email: "user@example.com"
+ *               email: "number777@yopmail.com"
  *     responses:
  *       200:
- *         description: Link reset password telah dikirim ke email.
+ *         description: Jika email terdaftar, link reset akan dikirim.
  *       404:
  *         description: Email tidak ditemukan.
  */
@@ -175,7 +175,7 @@
  *             example:
  *               token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
  *               newPassword: "NewPass123!"
- *               confirmPassword: "NewPass123!"
+ *               confirmNewPassword: "NewPass123!"
  *     responses:
  *       200:
  *         description: Password berhasil direset.
