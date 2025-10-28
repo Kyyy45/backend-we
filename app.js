@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import helmet from "helmet";
 import {
   swaggerSpec,
   swaggerUiMiddleware,
@@ -22,12 +23,13 @@ app.use(
     credentials: true,
   })
 );
-
 app.use(cookieParser());
+app.use(helmet());
 
-// Routes
+app.use("/api/auth/login", authLimiter);
+app.use("/api/auth/forgot-password", authLimiter);
+
 app.use("/api/auth", authRoutes);
-
 app.use("/api/admin", adminRoutes);
 app.use("/api/member", memberRoutes);
 app.use("/api/teacher", teacherRoutes);

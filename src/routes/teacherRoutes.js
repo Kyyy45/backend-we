@@ -1,6 +1,5 @@
 import express from "express";
-import { verifyToken } from "../middlewares/verifyToken.js";
-import { roleAuth } from "../middlewares/roleAuth.js";
+import { verifyToken, roleAuth } from "../middlewares/auth.js";
 import { getTeacherDashboard } from "../controllers/teacherController.js";
 
 const router = express.Router();
