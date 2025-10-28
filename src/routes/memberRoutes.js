@@ -12,7 +12,7 @@ const router = express.Router();
 router.get(
   "/dashboard",
   verifyToken(),
-  roleAuth(["member", "admin"]), // Admin juga boleh akses
+  roleAuth(["member", "admin"]),
   getMemberDashboard
 );
 

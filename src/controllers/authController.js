@@ -1,9 +1,9 @@
+import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import { registerSchema,forgotPasswordSchema, resetPasswordSchema } from "../validations/authValidation.js";
 import sendEmail from "../utils/sendEmail.js";
 import { getActivationEmailHTML, getResetPasswordEmailHTML, } from "../utils/emailTemplates.js";
+import { registerSchema,forgotPasswordSchema, resetPasswordSchema } from "../validations/authValidation.js";
 
 /**
  * Helper token generators

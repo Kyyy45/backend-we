@@ -1,9 +1,5 @@
 import mongoose from 'mongoose';
-import winston from 'winston';
-
-const logger = winston.createLogger({
-  transports: [new winston.transports.Console()]
-});
+import { logger } from "../middlewares/logger.js";
 
 const connectDB = async () => {
   try {

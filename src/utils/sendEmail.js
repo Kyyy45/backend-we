@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { logger } from "../middlewares/logger.js";
 
 const sendEmail = async (to, subject, html) => {
   try {
@@ -10,18 +11,15 @@ const sendEmail = async (to, subject, html) => {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
-      tls: {
-        rejectUnauthorized: false,
-      },
     });
 
     // Debug only in development
     if (process.env.NODE_ENV === "development") {
-      console.log("=== SMTP CONFIG ===");
-      console.log("SMTP_HOST:", process.env.SMTP_HOST);
-      console.log("SMTP_PORT:", process.env.SMTP_PORT);
-      console.log("SMTP_USER:", process.env.SMTP_USER);
-      console.log("===================");
+      logger.info("=== SMTP CONFIG ===");
+      logger.info("SMTP_HOST:", process.env.SMTP_HOST);
+      logger.info("SMTP_PORT:", process.env.SMTP_PORT);
+      logger.info("SMTP_USER:", process.env.SMTP_USER);
+      logger.info("===================");
     }
 
     // verify connection configuration
@@ -35,12 +33,12 @@ const sendEmail = async (to, subject, html) => {
     });
 
     if (process.env.NODE_ENV === "development") {
-      console.log("Email sent:", info.messageId);
+      logger.info(`"Email terkirim ke ${to}": ${info.messageId}`);
     }
 
     return info;
   } catch (error) {
-    console.error("Gagal mengirim email:", error);
+    logger.error("Gagal mengirim email:", error);
     throw new Error("Gagal mengirim email aktivasi");
   }
 };

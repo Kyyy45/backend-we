@@ -54,10 +54,12 @@ export const resetPasswordSchema = Joi.object({
       "string.pattern.base":
         "Password baru harus mengandung minimal 1 huruf besar, 1 angka, dan 1 simbol",
     }),
-  
-    confirmNewPassword: Joi.string().required().valid(Joi.ref("newPassword")).messages({
+
+  confirmNewPassword: Joi.string()
+    .required()
+    .valid(Joi.ref("newPassword"))
+    .messages({
       "any.only": "Password baru dan Konfirmasi Password tidak sama",
       "string.empty": "Konfirmasi password baru harus diisi",
     }),
-    
 }).options({ abortEarly: false });

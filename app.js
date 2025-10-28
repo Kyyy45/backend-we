@@ -6,10 +6,12 @@ import {
   swaggerSpec,
   swaggerUiMiddleware,
 } from "./src/config/swagger.js";
+import { authLimiter } from "./src/middlewares/rateLimiter.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import adminRoutes from "./src/routes/adminRoutes.js";
 import memberRoutes from "./src/routes/memberRoutes.js";
 import teacherRoutes from "./src/routes/teacherRoutes.js";
+import errorHandler from './src/middlewares/errorHandler.js';
 
 const app = express();
 app.use(express.json());
@@ -26,15 +28,19 @@ app.use(
 app.use(cookieParser());
 app.use(helmet());
 
+// Rate limit untuk endpoint sensitif
 app.use("/api/auth/login", authLimiter);
 app.use("/api/auth/forgot-password", authLimiter);
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/member", memberRoutes);
 app.use("/api/teacher", teacherRoutes);
 
-// Basic root route
+app.use(errorHandler);
+
+// Root test
 app.get("/", (req, res) => res.json({ message: "API is running" }));
 
 export default app;
