@@ -1,13 +1,15 @@
 import Joi from "joi";
 
 export const registerSchema = Joi.object({
-  fullName: Joi.string().required().messages({
-    "string.empty": "Nama lengkap harus diisi",
+  fullName: Joi.string().min(3).max(100).required().messages({
+    "string.empty": "Nama lengkap tidak boleh kosong",
+    "string.min": "Nama lengkap minimal 3 karakter",
+    "string.max": "Nama lengkap maksimal 100 karakter",
   }),
-  username: Joi.string().alphanum().min(3).max(30).required().messages({
-    "string.empty": "Username harus diisi",
+  username: Joi.string().alphanum().min(5).max(30).required().messages({
+    "string.empty": "Username tidak boleh kosong",
     "string.alphanum": "Username hanya boleh mengandung huruf dan angka",
-    "string.min": "Username minimal 3 karakter",
+    "string.min": "Username minimal 5 karakter",
     "string.max": "Username maksimal 30 karakter",
   }),
   email: Joi.string().email().required().messages({
@@ -15,14 +17,14 @@ export const registerSchema = Joi.object({
     "string.email": "Format email tidak valid",
   }),
   password: Joi.string()
-    .min(8)
-    .pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/)
+    .pattern(
+      new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).{8,}$")
+    )
     .required()
     .messages({
-      "string.empty": "Password harus diisi",
-      "string.min": "Password minimal 8 karakter",
       "string.pattern.base":
-        "Password harus mengandung minimal 1 huruf besar, 1 angka, dan 1 simbol",
+        "Password harus minimal 8 karakter dan mengandung huruf besar, huruf kecil, angka, dan simbol.",
+      "string.empty": "Password tidak boleh kosong",
     }),
   confirmPassword: Joi.string().required().valid(Joi.ref("password")).messages({
     "any.only": "Password dan Konfirmasi Password tidak sama",
